@@ -3,7 +3,7 @@ package org.scalablytyped.runtime
 import scala.scalajs.js
 import scala.scalajs.js.WrappedDictionary
 
-trait StringDictionary[V] extends js.Object
+trait StringDictionary[+V] extends js.Object
 
 object StringDictionary {
 

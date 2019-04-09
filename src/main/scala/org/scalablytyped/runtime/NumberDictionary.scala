@@ -1,24 +1,22 @@
 package org.scalablytyped.runtime
 
+import scala.language.implicitConversions
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSBracketAccess
 
-trait NumberDictionary[V] extends js.Object
+trait NumberDictionary[+V] extends js.Object
 
 object NumberDictionary {
-  @inline implicit def wrapNumberDictionary[V](dict: NumberDictionary[V]): WrappedNumberDictionary[V] =
-    new WrappedNumberDictionary(dict)
+  @js.native
+  trait NumberDictionaryRaw[+V] extends js.Object {
+    @JSBracketAccess
+    def apply(index: Int): js.UndefOr[V] = js.native
 
-  /** Returns a new empty dictionary */
-  @inline def empty[A]: NumberDictionary[A] =
-    (new js.Object).asInstanceOf[NumberDictionary[A]]
-
-  @inline
-  def apply[A](properties: (Double, A)*): NumberDictionary[A] = {
-//    js.special.objectLiteral(properties: _*).asInstanceOf[NumberDictionary[A]]
-
-    val result = empty[A]
-    for ((key, value) <- properties)
-      result(key) = value
-    result
+    /** Set the element at the given index. */
+    @JSBracketAccess
+    def update[VV >: V](index: Int, value: VV): Unit = js.native
   }
+
+  implicit def AsRaw[V](d: NumberDictionary[V]): NumberDictionaryRaw[V] =
+    d.asInstanceOf[NumberDictionaryRaw[V]]
 }
