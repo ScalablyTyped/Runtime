@@ -12,15 +12,17 @@ sealed trait NullUndefOr[+A] extends js.Any
 object NullUndefOr extends Companion {
   override type F[+A] = NullUndefOr[A]
 
+  @inline implicit final def asResult[A](a: A): Required[A] =
+    a.asInstanceOf[Required[A]]
+
   /* Duplicated for intellij. name it `apply` so users can be explicit */
-  @inline implicit final def apply[A](a: A): NullUndefOr[A] =
+  @inline final def apply[A](a: A): NullUndefOr[A] =
     a.asInstanceOf[NullUndefOr[A]]
 
   /* Integrate with Scala.js built-in type */
-  @inline implicit def fromJsUndefOr[A](a: js.UndefOr[A]): NullUndefOr[A] =
+  @inline def fromJsUndefOr[A](a: js.UndefOr[A]): NullUndefOr[A] =
     a.asInstanceOf[NullUndefOr[A]]
 
-  /* This is pretty arbitrary, but choose `undefined` as the empty value */
   @inline def Empty: NullUndefOr[Nothing] =
     UndefOr.Empty
 
@@ -40,8 +42,7 @@ sealed trait NullOr[+A] extends NullUndefOr[A]
 object NullOr extends Companion {
   override type F[+A] = NullOr[A]
 
-  /* Duplicated for intellij. name it `apply` so users can be explicit */
-  @inline implicit final def apply[A](a: A): NullOr[A] =
+  @inline final def apply[A](a: A): NullOr[A] =
     a.asInstanceOf[NullOr[A]]
 
   @inline def Empty: NullOr[Nothing] =
@@ -63,12 +64,11 @@ sealed trait UndefOr[+A] extends NullUndefOr[A]
 object UndefOr extends Companion {
   override type F[+A] = UndefOr[A]
 
-  /* Duplicated for intellij. name it `apply` so users can be explicit */
-  @inline implicit final def apply[A](a: A): UndefOr[A] =
+  @inline final def apply[A](a: A): UndefOr[A] =
     a.asInstanceOf[UndefOr[A]]
 
   /* Integrate with Scala.js built-in type */
-  @inline implicit def fromJsUndefOr[A](a: js.UndefOr[A]): UndefOr[A] =
+  @inline def fromJsUndefOr[A](a: js.UndefOr[A]): UndefOr[A] =
     a.asInstanceOf[UndefOr[A]]
 
   @inline def Empty: UndefOr[Nothing] =
@@ -90,8 +90,7 @@ sealed trait Required[+A] extends NullOr[A] with UndefOr[A]
 object Required extends Companion {
   override type F[+A] = Required[A]
 
-  /* Duplicated for intellij. name it `apply` so users can be explicit */
-  @inline implicit final def apply[A](a: A): Required[A] =
+  @inline final def apply[A](a: A): Required[A] =
     a.asInstanceOf[Required[A]]
 
   @inline implicit final class Ops[A](val self: Required[A]) extends AnyVal {
