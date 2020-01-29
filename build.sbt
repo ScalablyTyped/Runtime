@@ -1,9 +1,9 @@
-enablePlugins(spray.boilerplate.BoilerplatePlugin, ScalaJSPlugin)
+enablePlugins(spray.boilerplate.BoilerplatePlugin, ScalaJSPlugin, ScalaJSJUnitPlugin)
 
 crossScalaVersions := List("2.12.8", "2.13.0")
 scalaVersion := "2.12.8"
 organization := "com.olvind"
-version := "2.1.0"
+version := "2.2.0-M1"
 scalacOptions ++= {
   if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault")
   else Nil
