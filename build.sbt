@@ -1,24 +1,20 @@
 enablePlugins(spray.boilerplate.BoilerplatePlugin, ScalaJSPlugin)
 
-crossScalaVersions := List("2.12.8", "2.13.0")
-scalaVersion := "2.12.8"
+crossScalaVersions := List("2.12.11", "2.13.3", "3.0.0-M1")
+scalaVersion := crossScalaVersions.value.head
 organization := "com.olvind"
-version := "2.1.0"
-scalacOptions ++= {
-  if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault")
-  else Nil
-}
-
+version := "2.2.0"
+name := "scalablytyped-runtime"
 scalaJSUseMainModuleInitializer := true
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-homepage := Some(new URL("http://github.com/oyvindberg/ScalablyTyped-runtime"))
+homepage := Some(new URL("http://github.com/ScalablyTyped/Runtime"))
 startYear := Some(2018)
 pomExtra := (
   <scm>
-    <connection>scm:git:github.com:oyvindberg/ScalablyTyped-runtime</connection>
-    <developerConnection>scm:git:git@github.com:oyvindberg/ScalablyTyped-runtime.git</developerConnection>
-    <url>github.com:oyvindberg/ScalablyTyped-runtime.git</url>
+    <connection>scm:git:github.com:ScalablyTyped/Runtime</connection>
+    <developerConnection>scm:git:git@github.com:ScalablyTyped/Runtime.git</developerConnection>
+    <url>github.com:ScalablyTyped/Runtime.git</url>
   </scm>
     <developers>
       <developer>

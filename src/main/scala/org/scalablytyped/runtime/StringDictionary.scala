@@ -3,6 +3,8 @@ package org.scalablytyped.runtime
 import scala.scalajs.js
 import scala.scalajs.js.WrappedDictionary
 
+import scala.language.implicitConversions
+
 trait StringDictionary[+V] extends js.Object
 
 object StringDictionary {
@@ -12,14 +14,8 @@ object StringDictionary {
     (new js.Object).asInstanceOf[StringDictionary[A]]
 
   @inline
-  def apply[A](properties: (String, A)*): StringDictionary[A] = {
-//      js.special.objectLiteral(properties: _*).asInstanceOf[StringDictionary[A]]
-
-    val result = empty[A]
-    for ((key, value) <- properties)
-      result(key) = value
-    result
-  }
+  def apply[A](properties: (String, A)*): StringDictionary[A] =
+    js.special.objectLiteral(properties: _*).asInstanceOf[StringDictionary[A]]
 
   @inline implicit def wrapStringDictionary[V](dict: StringDictionary[V]): WrappedDictionary[V] =
     new WrappedDictionary(dict.asInstanceOf[js.Dictionary[V]])
