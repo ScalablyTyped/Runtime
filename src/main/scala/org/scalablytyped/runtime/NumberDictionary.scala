@@ -10,7 +10,7 @@ object NumberDictionary {
   @js.native
   trait NumberDictionaryRaw[+V] extends js.Object {
     @JSBracketAccess
-    def apply(index: Int): js.UndefOr[V] = js.native
+    def apply[VV >: V](index: Int): js.UndefOr[VV] = js.native
 
     /** Set the element at the given index. */
     @JSBracketAccess
