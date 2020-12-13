@@ -5,7 +5,7 @@ import scala.scalajs.js.WrappedDictionary
 
 import scala.language.implicitConversions
 
-trait StringDictionary[+V] extends js.Object
+trait StringDictionary[+V] extends StObject
 
 object StringDictionary {
 

@@ -4,7 +4,7 @@ import scala.language.implicitConversions
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSBracketAccess
 
-trait NumberDictionary[+V] extends js.Object
+trait NumberDictionary[+V] extends StObject
 
 object NumberDictionary {
   @js.native
