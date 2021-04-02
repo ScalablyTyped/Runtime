@@ -11,5 +11,5 @@ class T2[T, U](override val t: T, val u: U) extends T1[T](t)
 object Tester {
   def tester(t1s: T1[js.Any]*) = ()
 
-  tester(new T2(1, "").unsafeCast2)
+  tester(new T2(1, "").unsafeCast2[js.Any, js.Any])
 }

@@ -1,9 +1,9 @@
 enablePlugins(spray.boilerplate.BoilerplatePlugin, ScalaJSPlugin)
 
-crossScalaVersions := List("2.12.11", "2.13.3", "3.0.0-M2", "3.0.0-RC1")
+crossScalaVersions := List("2.12.11", "2.13.3", "3.0.0-RC1", "3.0.0-RC2")
 scalaVersion := crossScalaVersions.value.head
 organization := "com.olvind"
-version := "2.4.0"
+version := "2.4.1"
 name := "scalablytyped-runtime"
 scalaJSUseMainModuleInitializer := true
 
