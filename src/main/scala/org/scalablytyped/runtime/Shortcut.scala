@@ -1,5 +1,7 @@
 package org.scalablytyped.runtime
 
+import scala.language.implicitConversions
+
 trait Shortcut {
   type _To
   def _to: _To
